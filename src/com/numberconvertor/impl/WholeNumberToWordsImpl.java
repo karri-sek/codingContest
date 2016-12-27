@@ -9,7 +9,13 @@ import java.util.*;
  */
 public class WholeNumberToWordsImpl implements WholeNumberToWords {
 
+    private final List<String> forms;
+
     private static final Integer SPLIT_BASE = 1000;
+
+    public WholeNumberToWordsImpl(List<String> forms){
+        this.forms=forms;
+    }
 
     @Override
     public String numberToWord(Integer number) throws IllegalArgumentException{
@@ -17,11 +23,14 @@ public class WholeNumberToWordsImpl implements WholeNumberToWords {
             throw new IllegalArgumentException("Number cannot be less than zero");
         }else{
             List<Integer> numberSplits = splitNumber(number);
+            List<String> formsToUse = forms.subList(0,numberSplits.size());
+            Collections.reverse(formsToUse);
         }
+        return "";
     }
 
     public List<Integer> splitNumber(Integer number) {
-        List<Integer>  numberSplits = new LinkedList<Integer>();
+        List<Integer>  numberSplits = new LinkedList();
 
         while (number > 0) {
             numberSplits.add(number % SPLIT_BASE);
