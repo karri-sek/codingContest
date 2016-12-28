@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public interface Names {
 
-    Map<Integer,String> integerToWordsMap();
+    Map<Integer,String> getIntegerToWordsMap();
 
     char digitsSeparator();
 

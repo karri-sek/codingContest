@@ -13,7 +13,7 @@ import static com.spellitout.builder.NamesBuilder.namesBuilder;
  */
 public class NamesImpl implements Names{
     @Override
-    public Map<Integer,String> integerToWordsMap(){
+    public Map<Integer,String> getIntegerToWordsMap(){
 
         return namesBuilder()
                 .put(0, "zero")
