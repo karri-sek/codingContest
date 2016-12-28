@@ -13,7 +13,7 @@ import static com.spellitout.builder.NamesBuilder.namesBuilder;
  */
 public class NamesImpl implements Names{
     @Override
-    public Map<Integer,String> numberAndNameMap(){
+    public Map<Integer,String> integerToWordsMap(){
 
         return namesBuilder()
                 .put(0, "zero")
@@ -62,7 +62,7 @@ public class NamesImpl implements Names{
     }
 
     @Override
-    public List<String> forms(){
+    public List<String> notations(){
         return Arrays.asList("","thousand","million","billion");
     }
 }

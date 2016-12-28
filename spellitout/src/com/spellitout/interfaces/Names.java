@@ -8,9 +8,9 @@ import java.util.Map;
  */
 public interface Names {
 
-    Map<Integer,String> numberAndNameMap();
+    Map<Integer,String> integerToWordsMap();
 
     char digitsSeparator();
 
-    List<String> forms();
+    List<String> notations();
 }
