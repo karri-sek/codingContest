@@ -2,20 +2,19 @@ package test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
+import com.spellitout.builder.IntegerToNumberMapper;
+import com.spellitout.impl.NamesImpl;
 import com.spellitout.impl.WholeNumberToWordsImpl;
+import com.spellitout.interfaces.Names;
 
 public class NumberToWordConverterTest {
     
-    @Rule
-    public ExpectedException thrown= ExpectedException.none();
-    List<String> notations = new ArrayList<String>(Arrays.asList(" ","thousand","million","billion"));
+    Names implObject = new NamesImpl();      
+    IntegerToNumberMapper integerToNumberMapper = new IntegerToNumberMapper(implObject.getIntegerToWordsMap(),implObject.digitsSeparator());    
+    List<String> notations = new ArrayList<String>(Arrays.asList(" ","thousand","million","billion"));   
     
-    WholeNumberToWordsImpl impl = new WholeNumberToWordsImpl(notations);
+    WholeNumberToWordsImpl impl = new WholeNumberToWordsImpl(notations,integerToNumberMapper);
    
     @Test(expected = IllegalArgumentException.class)
     public void throwsException(){

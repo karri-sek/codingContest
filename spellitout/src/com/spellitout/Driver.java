@@ -14,8 +14,8 @@ public class Driver {
     public static  void main(String[] args){
 
         Names implObject = new NamesImpl();
-        WholeNumberToWords numberToWords = new WholeNumberToWordsImpl(implObject.notations());
-        IntegerToNumberMapper integerToNumberMapper = new IntegerToNumberMapper(implObject.getIntegerToWordsMap(),implObject.digitsSeparator());
+        IntegerToNumberMapper integerToNumberMapper = new IntegerToNumberMapper(implObject.getIntegerToWordsMap(),implObject.digitsSeparator());  
+        WholeNumberToWords numberToWords = new WholeNumberToWordsImpl(implObject.notations(),integerToNumberMapper);       
         numberToWords.numberToWord(1234);
 
     }

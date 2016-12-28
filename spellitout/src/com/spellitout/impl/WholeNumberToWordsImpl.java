@@ -1,5 +1,6 @@
 package com.spellitout.impl;
 
+import com.spellitout.builder.IntegerToNumberMapper;
 import com.spellitout.interfaces.WholeNumberToWords;
 
 import java.util.*;
@@ -9,12 +10,13 @@ import java.util.*;
  */
 public class WholeNumberToWordsImpl implements WholeNumberToWords {
 
-    private final List<String> forms;
-
+    private final List<String> notations;
+    private final IntegerToNumberMapper integerToNumberMapper;
     private static final Integer SPLIT_BASE = 1000;
 
-    public WholeNumberToWordsImpl(List<String> forms) {
-	this.forms = forms;
+    public WholeNumberToWordsImpl(List<String> notations, IntegerToNumberMapper integerToNumberMapper) {
+	this.notations = notations;
+	this.integerToNumberMapper = integerToNumberMapper;
     }
 
     @Override
@@ -24,9 +26,17 @@ public class WholeNumberToWordsImpl implements WholeNumberToWords {
 	} else {
 	    List<Integer> numberSplits = splitNumber(number);
 	    List<String> notations = getNotationList(numberSplits.size() - 1);
-	    matchNotationsWithSplits(numberSplits, notations);
+	    List<String> numberInWordsList = matchNotationsWithSplits(numberSplits, notations);
+	    return joinWords(numberInWordsList);
 	}
-	return "";
+    }
+
+    private String joinWords(List<String> numberInWordsList) {
+	StringBuilder words = new StringBuilder();
+	for (String word : numberInWordsList) {
+	    words.append(word).append(" ");
+	}
+	return words.toString();
     }
 
     /**
@@ -55,9 +65,9 @@ public class WholeNumberToWordsImpl implements WholeNumberToWords {
 
     private List<String> getNotationList(int endIndex) {
 	List<String> notationList = new LinkedList<String>();
-	if (forms.size() >= endIndex) {
+	if (notations.size() >= endIndex) {
 	    while (endIndex >= 0) {
-		notationList.add(forms.get(endIndex--));
+		notationList.add(notations.get(endIndex--));
 	    }
 	}
 	return notationList;
@@ -70,11 +80,18 @@ public class WholeNumberToWordsImpl implements WholeNumberToWords {
      * @param notations
      */
 
-    private void matchNotationsWithSplits(List<Integer> numberSplits, List<String> notations) {
+    private List<String> matchNotationsWithSplits(List<Integer> numberSplits, List<String> notations) {
+	List<String> numberInWordsList = new ArrayList<String>();
 	Iterator<Integer> splitsIterator = numberSplits.iterator();
 	Iterator<String> notationsIterator = notations.iterator();
 	while (splitsIterator.hasNext() && notationsIterator.hasNext()) {
-
+	    Integer splitValue = splitsIterator.next();
+	    String notationValue = notationsIterator.next();
+	    if (splitValue > 0) {
+		numberInWordsList.add(integerToNumberMapper.getWordsForNumber(splitValue));
+		numberInWordsList.add(notationValue);
+	    }
 	}
+	return numberInWordsList;
     }
 }
