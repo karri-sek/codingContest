@@ -16,16 +16,7 @@ public class BinarySearchTree {
 	this.left = null;
 	this.right = null;
     }
-    
-    public static void main(String[] args){
-	Ball b1 = new Ball(20);
-	Ball b2 = new Ball(10);	
-	BinarySearchTree obj = new BinarySearchTree(b1);
-	obj.addNode(b2);
-	
-	obj.inOrder(obj);
-	
-    }
+
 
     /**
      * As convention, if the key to be inserted < key of the root node, key
@@ -33,7 +24,7 @@ public class BinarySearchTree {
      * node, key inserted in right subtree. if the key to be inserted = key of
      * the root node, key inserted in right subtree.
      * 
-     * @param data
+     * @param ball
      */
     public void addNode(Ball ball) {
 	if (ball.getValue() < this.ball.getValue()) {
