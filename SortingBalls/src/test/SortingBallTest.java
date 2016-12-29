@@ -20,6 +20,12 @@ public class SortingBallTest {
 	rack.registerObserver(treeSortObserver);
 	Assert.assertEquals(1, rack.getNoOfObservers());
     }
+    
+    @Test(expected = UnsupportedOperationException.class)
+    public void throwsUnsupportedOperationExceptionWhenNoObserversAreRegistered() {
+	rack.add(new Ball(30));
+    }
+    
 
     @Test
     public final void whenNoBallsAddedToTheRackThenLeaderBoardShouldBeEmpty() {
@@ -36,19 +42,43 @@ public class SortingBallTest {
 	    Assert.assertEquals(30, ball.getValue());
 	}
     }
-    
+
     @Test
     public final void whenBallsOfValues40And10areAddedThenLeaderBoardShouldDisplayBallInAscendingSortOrder() {
 	rack.registerObserver(treeSortObserver);
 	rack.add(new Ball(40));
 	rack.add(new Ball(10));
-	List<Ball> listOfBallsInLeaderBoard =  rack.getBalls();
+	List<Ball> listOfBallsInLeaderBoard = rack.getBalls();
 	Assert.assertEquals(2, listOfBallsInLeaderBoard.size());
 	int index = 0;
 	for (Ball ball : listOfBallsInLeaderBoard) {
-	    if(index ==0){
+	    if (index == 0) {
 		Assert.assertEquals(10, ball.getValue());
-	    }else{
+	    } else {
+		Assert.assertEquals(40, ball.getValue());
+	    }
+	    index++;
+	}
+    }
+
+    @Test
+    public final void whenBallsOfValues40And30And20And10areAddedThenLeaderBoardShouldDisplayBallInAscendingSortOrder() {
+	rack.registerObserver(treeSortObserver);
+	rack.add(new Ball(40));
+	rack.add(new Ball(30));
+	rack.add(new Ball(20));
+	rack.add(new Ball(10));
+	List<Ball> listOfBallsInLeaderBoard = rack.getBalls();
+	Assert.assertEquals(4, listOfBallsInLeaderBoard.size());
+	int index = 0;
+	for (Ball ball : listOfBallsInLeaderBoard) {
+	    if (index == 0) {
+		Assert.assertEquals(10, ball.getValue());
+	    } else if (index == 1) {
+		Assert.assertEquals(20, ball.getValue());
+	    } else if (index == 2) {
+		Assert.assertEquals(30, ball.getValue());
+	    } else if (index == 3) {
 		Assert.assertEquals(40, ball.getValue());
 	    }
 	    index++;

@@ -33,7 +33,10 @@ public class Rack implements Subject {
 	}
     }
 
-    public void add(Ball ball) {
+    public void add(Ball ball) throws UnsupportedOperationException {
+	if (listOfObservers.size() < 1) {
+	    throw new UnsupportedOperationException("No Observers registered");
+	}
 	this.ball = ball;
 	this.notifyObservers();
     }
