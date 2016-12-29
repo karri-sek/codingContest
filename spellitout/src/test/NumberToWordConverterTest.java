@@ -53,4 +53,12 @@ public class NumberToWordConverterTest {
         impl.numberToWord(-1);
     }
 
+    @Test
+    public final void whenNumberIs1BillionThenWordShouldBeOneBillion(){
+        Assert.assertEquals("one billion",impl.numberToWord(1000000000));
+    }
+
+
+
+
 }

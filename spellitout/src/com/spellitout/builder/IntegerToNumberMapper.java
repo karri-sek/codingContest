@@ -33,6 +33,7 @@ public class IntegerToNumberMapper {
 
     /**
      * Converts the two digit number into word form
+	 * call recursively the method getWordsForNumber till get a map from integerToWordsMap.
      * 
      * @param number
      * @return
