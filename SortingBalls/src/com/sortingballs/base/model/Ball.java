@@ -9,6 +9,10 @@ public class Ball {
     private int value;
 
     private String colour;
+    
+    public Ball(int value){
+	this.value = value;
+    }
 
     public String getColour() {
         return colour;

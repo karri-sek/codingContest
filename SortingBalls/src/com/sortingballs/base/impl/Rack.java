@@ -1,15 +1,18 @@
 package com.sortingballs.base.impl;
 
-import com.sortingballs.base.Observer;
-import com.sortingballs.base.Subject;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sortingballs.base.Observer;
+import com.sortingballs.base.Subject;
+import com.sortingballs.base.model.Ball;
 
 /**
  * Created by sekhar on 28/12/16.
  */
 public class Rack implements Subject {
+    
+    Ball ball;
 
     private List<Observer> listOfObservers = new ArrayList<Observer>();
     @Override
@@ -25,7 +28,18 @@ public class Rack implements Subject {
     @Override
     public void notifyObservers() {
         for(Observer observer:listOfObservers){
-            observer.update();
+          observer.update(this.ball);
         }
     }
+    
+    public void add(Ball ball){
+	this.ball = ball;
+    }
+    
+    public void getBalls() {
+	for (Observer observer : listOfObservers) {
+	    observer.getSortedBalls();
+	}
+    }
+    
 }
