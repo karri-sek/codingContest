@@ -15,7 +15,7 @@
  * Each Observer can sort with there own sorting logic.
  * Inserting and inorder traversal of O(logn) with BST.
  * No Hassel on reshuffling using Arrays on sorting logic.
- 
+ ---
  ### Spell it out 
 ##### Solution
 
