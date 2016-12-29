@@ -16,10 +16,9 @@
  * Inserting and inorder traversal of O(logn) with BST.
  * No Hassel on reshuffling using Arrays on sorting logic.
 
-
 ---
 
- ### Spell it out 
+### Spell it out 
 ##### Solution
 
 ##### Assumption's
