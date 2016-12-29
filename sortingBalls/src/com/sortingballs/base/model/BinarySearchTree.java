@@ -55,7 +55,6 @@ public class BinarySearchTree {
 	}    
 	inOrder(root.left);
 	inorderListOfBalls.add(root.ball);
-	System.out.println(">>> "+root.ball);
 	inOrder(root.right);
 
     }

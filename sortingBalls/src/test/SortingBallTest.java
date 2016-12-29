@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -63,25 +65,40 @@ public class SortingBallTest {
 
     @Test
     public final void whenBallsOfValues40And30And20And10areAddedThenLeaderBoardShouldDisplayBallInAscendingSortOrder() {
-	rack.registerObserver(treeSortObserver);
-	rack.add(new Ball(40));
-	rack.add(new Ball(30));
-	rack.add(new Ball(20));
-	rack.add(new Ball(10));
-	List<Ball> listOfBallsInLeaderBoard = rack.getBalls();
-	Assert.assertEquals(4, listOfBallsInLeaderBoard.size());
-	int index = 0;
-	for (Ball ball : listOfBallsInLeaderBoard) {
-	    if (index == 0) {
-		Assert.assertEquals(10, ball.getValue());
-	    } else if (index == 1) {
-		Assert.assertEquals(20, ball.getValue());
-	    } else if (index == 2) {
-		Assert.assertEquals(30, ball.getValue());
-	    } else if (index == 3) {
-		Assert.assertEquals(40, ball.getValue());
-	    }
-	    index++;
+		rack.registerObserver(treeSortObserver);
+		rack.add(new Ball(40));
+		rack.add(new Ball(30));
+		rack.add(new Ball(20));
+		rack.add(new Ball(10));
+		List<Ball> ballsInOrder = rack.getBalls();
+		Assert.assertEquals(4, ballsInOrder.size());
+		int index = 0;
+		for (Ball ball : ballsInOrder) {
+			if (index == 0) {
+				Assert.assertEquals(10, ball.getValue());
+			} else if (index == 1) {
+				Assert.assertEquals(20, ball.getValue());
+			} else if (index == 2) {
+				Assert.assertEquals(30, ball.getValue());
+			} else if (index == 3) {
+				Assert.assertEquals(40, ball.getValue());
+			}
+			index++;
+		}
 	}
+		@Test
+		public final void whenBallsOfValues30And20And10areAddedThenLeaderBoardShouldDisplayBallInAscendingSortOrder() {
+			List<Integer> expected = Arrays.asList(10,20,30);
+			List<Integer> actual = new LinkedList();
+			rack.registerObserver(treeSortObserver);
+			rack.add(new Ball(30));
+			rack.add(new Ball(20));
+			rack.add(new Ball(10));
+			List<Ball> listOfBalls = rack.getBalls();
+			Assert.assertEquals(3, listOfBalls.size());
+			for(Ball ball:listOfBalls){
+				actual.add(ball.getValue());
+			}
+			Assert.assertEquals(expected,actual);
     }
 }
