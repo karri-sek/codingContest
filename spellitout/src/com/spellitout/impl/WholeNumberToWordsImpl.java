@@ -36,7 +36,7 @@ public class WholeNumberToWordsImpl implements WholeNumberToWords {
 	for (String word : numberInWordsList) {
 	    words.append(word).append(" ");
 	}
-	return words.toString();
+	return words.toString().trim();
     }
 
     /**
