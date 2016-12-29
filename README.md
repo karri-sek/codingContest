@@ -22,9 +22,12 @@
 ##### Assumption's
 * Only Positive Integers.
 * No decimal numbers.
+
 ##### Approach
- Uses the **builder design pattern**  to build the meta(config) data for words.
-Split the given word by dividing with 1000 as base number and calls recursively the method getWordsForNumber to map the number with word. This solution can be used to generate the word from the given number upto billions.
+
+Uses the **builder design pattern**  to build the meta(config) data for words.
+Split the given word by dividing with 1000 as base number and calls recursively the method getWordsForNumber to map the number with word. 
+This solution can be used to generate the word from the given number upto **billions**.
  * Tests has been added in the file **NumberToWordConverterTest.java**.
  * **Driver.java** is the driver file to quick start this solution.
  
