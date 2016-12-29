@@ -1,5 +1,6 @@
 package com.sortingballs.base.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sortingballs.base.Observer;
@@ -22,6 +23,17 @@ public class TreeSortObserver implements Observer {
 	    root.addNode(ball);
 	}
     }
+    
+    public static void main(String[] args){
+   	Ball b1 = new Ball(20);
+   	Ball b2 = new Ball(10);	
+   	BinarySearchTree obj = new BinarySearchTree(b1);
+   	obj.addNode(b2);
+   	
+   	obj.inOrder(obj);
+   	
+       }
+
 
     /**
      * This Observer Implementation backed by Binary Search Tree.
@@ -30,6 +42,11 @@ public class TreeSortObserver implements Observer {
      */
     @Override
     public List<Ball> getSortedBalls() {
-	return root.inOrder(root);
+	if (root == null) {
+	    return new ArrayList<Ball>();
+	} else {
+	    root.inOrder(root);
+	    return root.getListOfBallsInSortedOrder();
+	}
     }
 }

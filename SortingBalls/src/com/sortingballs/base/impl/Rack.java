@@ -11,35 +11,42 @@ import com.sortingballs.base.model.Ball;
  * Created by sekhar on 28/12/16.
  */
 public class Rack implements Subject {
-    
+
     Ball ball;
 
     private List<Observer> listOfObservers = new ArrayList<Observer>();
+
     @Override
     public void registerObserver(Observer observer) {
-        listOfObservers.add(observer);
+	listOfObservers.add(observer);
     }
 
     @Override
     public void removeObserver(Observer observer) {
-        listOfObservers.remove(observer);
+	listOfObservers.remove(observer);
     }
 
     @Override
     public void notifyObservers() {
-        for(Observer observer:listOfObservers){
-          observer.update(this.ball);
-        }
-    }
-    
-    public void add(Ball ball){
-	this.ball = ball;
-    }
-    
-    public void getBalls() {
 	for (Observer observer : listOfObservers) {
-	    observer.getSortedBalls();
+	    observer.update(this.ball);
 	}
     }
-    
+
+    public void add(Ball ball) {
+	this.ball = ball;
+	this.notifyObservers();
+    }
+
+    public List<Ball> getBalls() {
+	for (Observer observer : listOfObservers) {
+	   return observer.getSortedBalls();
+	}
+	return null;
+    }
+
+    public int getNoOfObservers() {
+	return listOfObservers.size();
+    }
+
 }
