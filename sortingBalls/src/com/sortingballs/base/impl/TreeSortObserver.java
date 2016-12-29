@@ -23,17 +23,6 @@ public class TreeSortObserver implements Observer {
 	    root.addNode(ball);
 	}
     }
-    
-    public static void main(String[] args){
-   	Ball b1 = new Ball(20);
-   	Ball b2 = new Ball(10);	
-   	BinarySearchTree obj = new BinarySearchTree(b1);
-   	obj.addNode(b2);
-   	
-   	obj.inOrder(obj);
-   	
-       }
-
 
     /**
      * This Observer Implementation backed by Binary Search Tree.
